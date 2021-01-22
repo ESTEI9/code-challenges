@@ -1,0 +1,43 @@
+<ng-container *ngIf="editing; else list">
+  <mat-list>
+    <mat-label matSubHeader class="item-label">
+      {{label}}s
+      <button mat-icon-button color="primary" (click)="addItem()">
+        <mat-icon aria-label="add">add_circle</mat-icon>
+      </button>
+    </mat-label>
+    <mat-list-item *ngFor="let item of localItems; index as i; last as isLast">
+      <mat-form-field class="measure">
+        <mat-label>Amount</mat-label>
+        <input matInput [(ngModel)]="item.measure" (change)="updateOption(i,item)" />
+      </mat-form-field>
+      <mat-form-field class="unit">
+        <mat-label>Unit</mat-label>
+        <mat-select [(value)]="item.unit" (selectionChange)="updateOption(i,item)">
+          <mat-option *ngFor="let option of units" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="options">
+        <mat-label>{{ label }}</mat-label>
+        <mat-select [(value)]="item.name" (selectionChange)="updateOption(i,item)">
+          <mat-option *ngFor="let option of options" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-icon-button color="accent" aria-label="remove" (click)="removeItem(i)">
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</ng-container>
+<ng-template #list>
+  <mat-list role="list">
+    <mat-label matLine>{{ label }}s</mat-label>
+    <mat-list-item *ngFor="let item of items">
+      {{ item.measure }} {{ item.unit }} {{ item.name }}
+    </mat-list-item>
+  </mat-list>
+</ng-template>

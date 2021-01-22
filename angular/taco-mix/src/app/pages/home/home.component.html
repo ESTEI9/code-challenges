@@ -1,0 +1,19 @@
+<mat-sidenav-container>
+    <mat-sidenav-content>
+        <app-header></app-header>
+            <ul class="tacos">
+                <li *ngFor="let taco of tacos; index as i">
+                    <mat-card (click)="selectTaco(i)" class="taco">
+                        <mat-card-title>{{taco.name}}</mat-card-title>
+                    </mat-card>
+                </li>
+                <li class="new">
+                    <button mat-stroked-button (click)="startTaco()"><mat-icon>add</mat-icon> New Taco</button>
+                </li>
+            </ul>
+    </mat-sidenav-content>
+    <mat-sidenav #drawer position="end" (closedStart)="setEditing()">
+        <mat-toolbar color="accent"><span *ngIf="taco.name">{{taco.name}}</span><span *ngIf="!taco.name">Create Taco</span></mat-toolbar>
+        <app-edit-taco [taco]="taco" (update)="updateTaco($event)" [editing]="editing" (delete)="deleteTaco()"></app-edit-taco>
+    </mat-sidenav>
+</mat-sidenav-container>

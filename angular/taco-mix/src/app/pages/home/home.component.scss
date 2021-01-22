@@ -1,0 +1,33 @@
+.tacos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 350px);
+    column-gap: 1em;
+    row-gap: 1em;
+    padding-left: 0;
+    width: 100%;
+    justify-content: center;
+    list-style: none;
+  
+    mat-card.taco {
+      cursor: pointer;
+
+      mat-card-title {
+        text-align: center;
+      }
+    
+      mat-card-content {
+          margin-bottom: 0.5em;
+      }
+    }
+
+    .new button {
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+    }
+  }
+
+.mat-sidenav-container {
+    height: 100%;
+    background: transparent;
+}
